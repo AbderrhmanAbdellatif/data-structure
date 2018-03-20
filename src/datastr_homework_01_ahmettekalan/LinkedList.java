@@ -112,7 +112,7 @@ public class LinkedList {
             power = String.valueOf(sb1.toString().toCharArray());
             numb = num;
             powerb = power;
-        //    if (nigt) {
+            //    if (nigt) {
             //      numb *= -1;
             //  }
         } catch (NumberFormatException ex) {
@@ -158,19 +158,30 @@ public class LinkedList {
         }
     }
 
-    public void Toplam_islem(LinkedList linkedList) {
-      
-        Node temp = this.header;
+    public static void Toplam_islem(LinkedList linkedList) {
+        int ToplamRekam = 0;
+        int Toplampower = 0;
+        BigInteger toplam = BigInteger.valueOf(0);
+        Node temp = header;
+        Node temp2 = linkedList.header;
         while (temp != null) {
-                
-         //   if () {
-                
-         //  }
-            
-               
-            
-            temp = temp.nextNode;
+            temp2 = temp.nextNode;
+            while (temp2 != null) {
+                if (temp.kuvvet.equals(temp2.kuvvet)) {
+                    ToplamRekam = Integer.parseInt(temp.rakem) + Integer.parseInt(temp2.rakem);
+                    Toplampower = Integer.parseInt(temp.kuvvet);
+                    break;
+                } else if (temp.kuvvet.isEmpty() || temp.kuvvet.charAt(0) == ' ' && temp.kuvvet.charAt(1) == ' ' && temp.kuvvet.charAt(2) == ' '
+                        || temp2.kuvvet.isEmpty() || temp2.kuvvet.charAt(0) == ' ' && temp2.kuvvet.charAt(1) == ' ' && temp2.kuvvet.charAt(2) == ' ') {
+                    ToplamRekam = Integer.parseInt(temp.rakem) + Integer.parseInt(temp2.rakem);
+                } else {
+
+                }
+
+                temp2 = temp2.nextNode;
             }
+            temp = temp.nextNode;
+        }
     }
 
     public void Cikarma_islem(LinkedList linkedList) {
@@ -191,7 +202,7 @@ public class LinkedList {
         linklist_2.NameOfFile = "list2.txt";
         linklist_2.Addtofile();
         LinkedList sonuc = new LinkedList();
-      //  sonuc.Toplam_islem(linklist_2);
+        //  sonuc.Toplam_islem(linklist_2);
 
     }
 }
