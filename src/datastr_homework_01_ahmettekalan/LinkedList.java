@@ -87,7 +87,7 @@ public class LinkedList {
     private static void addFirst(char rakem[], char kuvvet[]) {
         String numb = " ";
         String powerb = " ";
-        boolean nigt = rakem[0] == '-';
+        // boolean nigt = rakem[0] == '-';
         StringBuilder sb = new StringBuilder();
         sb.append(rakem);
         if (size != 0) {
@@ -113,8 +113,8 @@ public class LinkedList {
             numb = num;
             powerb = power;
         //    if (nigt) {
-          //      numb *= -1;
-          //  }
+            //      numb *= -1;
+            //  }
         } catch (NumberFormatException ex) {
             power = " ";
         }
@@ -159,67 +159,18 @@ public class LinkedList {
     }
 
     public void Toplam_islem(LinkedList linkedList) {
-        Node temp = linkedList.header;
-        Node node = linkedList.header;
-        int i = 0, j = 0;
-        char chardizi[] = new char[3];
-        char prt[] = new char[3];
-        String newLink = " ";
-        int aynekuvvet[] = new int[10];
-        int aynerakem[] = new int[10];
-        int farkli[] = new int[10];
-        int power = 0, num = 0, sonuc;
-        boolean durum = true, some = false;
+      
+        Node temp = this.header;
         while (temp != null) {
-            num = Integer.parseInt(temp.rakem);
-            power = Integer.parseInt(temp.kuvvet);
-            node = temp.nextNode;
-            while (node != null) {
-                if (power == Integer.parseInt(node.kuvvet)) {
-                    aynekuvvet[i] = Integer.parseInt(node.kuvvet);
-                    aynerakem[i] = Integer.parseInt(node.rakem);
-                    i++;
-                    durum = false;
-                    some = true;
-                    break;
-                }
-                node = node.nextNode;
-            }
-            if (some) {
-                aynekuvvet[i] = power;
-                aynerakem[i] = num;
-                i++;
-                sonuc = aynerakem[0] + aynerakem[1];
-                newLink += sonuc + "x^" + aynekuvvet[0];
-                for (int k = 0; k < aynekuvvet.length; k++) {
-                    aynekuvvet[k] = 0;
-                }
-                for (int k = 0; k < aynerakem.length; k++) {
-                    aynerakem[k] = 0;
-                }
-                i = 0;
-
-            }
-            if (durum) {
-                farkli[j] = Integer.parseInt(node.rakem);
-                j++;
-                farkli[j] = Integer.parseInt(node.kuvvet);
-                j++;
-                // for (int k = 0; k < farkli.length; k++) {
-                newLink += farkli[0] + "x^" + farkli[1];
-                for (int k = 0; k < farkli.length; k++) {
-                    farkli[k] = 0;
-                }
-                j = 0;
-                // }
-            }
-
+                
+         //   if () {
+                
+         //  }
+            
+               
+            
             temp = temp.nextNode;
-            node = null;
-            durum = true;
-            some = false;
-        }
-        System.out.println(newLink);
+            }
     }
 
     public void Cikarma_islem(LinkedList linkedList) {
@@ -240,7 +191,7 @@ public class LinkedList {
         linklist_2.NameOfFile = "list2.txt";
         linklist_2.Addtofile();
         LinkedList sonuc = new LinkedList();
-        //    sonuc.Toplam_islem(linklist_2);
+      //  sonuc.Toplam_islem(linklist_2);
 
     }
 }
