@@ -171,15 +171,14 @@ public class LinkedList {
                     ToplamRekam = Integer.parseInt(temp.rakem) + Integer.parseInt(temp2.rakem);
                     Toplampower = Integer.parseInt(temp.kuvvet);
                     toplam.add(BigInteger.valueOf((long) Math.pow(ToplamRekam * 2, Toplampower)));
+                    temp.kuvvet=null;temp.rakem=null; temp2.kuvvet=null; temp2.rakem=null;
                     break;
                 } else if (temp.kuvvet.isEmpty() || temp.kuvvet.charAt(0) == ' ' && temp.kuvvet.charAt(1) == ' ' && temp.kuvvet.charAt(2) == ' '
                         || temp2.kuvvet.isEmpty() || temp2.kuvvet.charAt(0) == ' ' && temp2.kuvvet.charAt(1) == ' ' && temp2.kuvvet.charAt(2) == ' ') {
                     ToplamRekam = Integer.parseInt(temp.rakem) + Integer.parseInt(temp2.rakem);
                      toplam.add(BigInteger.valueOf(ToplamRekam));
-                } else {
-
+                      temp.kuvvet=null;temp.rakem=null; temp2.kuvvet=null; temp2.rakem=null;
                 }
-
                 temp2 = temp2.nextNode;
             }
             temp = temp.nextNode;
