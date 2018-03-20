@@ -170,10 +170,12 @@ public class LinkedList {
                 if (temp.kuvvet.equals(temp2.kuvvet)) {
                     ToplamRekam = Integer.parseInt(temp.rakem) + Integer.parseInt(temp2.rakem);
                     Toplampower = Integer.parseInt(temp.kuvvet);
+                    toplam.add(BigInteger.valueOf((long) Math.pow(ToplamRekam * 2, Toplampower)));
                     break;
                 } else if (temp.kuvvet.isEmpty() || temp.kuvvet.charAt(0) == ' ' && temp.kuvvet.charAt(1) == ' ' && temp.kuvvet.charAt(2) == ' '
                         || temp2.kuvvet.isEmpty() || temp2.kuvvet.charAt(0) == ' ' && temp2.kuvvet.charAt(1) == ' ' && temp2.kuvvet.charAt(2) == ' ') {
                     ToplamRekam = Integer.parseInt(temp.rakem) + Integer.parseInt(temp2.rakem);
+                     toplam.add(BigInteger.valueOf(ToplamRekam));
                 } else {
 
                 }
