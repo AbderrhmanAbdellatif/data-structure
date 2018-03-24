@@ -16,6 +16,8 @@ import java.math.BigInteger;
  */
 public class LinkedList {
 
+    public static BigInteger toplam = BigInteger.valueOf(0);
+    public static BigInteger cikarma = BigInteger.valueOf(0);
     public static String power = " ";
     public static int size = 0;
     private static Node header;
@@ -134,7 +136,7 @@ public class LinkedList {
         Node temp = header;
 
         while (temp != null) {
-            System.out.print("(" + temp.rakem + "x^" + temp.kuvvet + ") -----> ");
+            System.out.print(" ([" + temp.rakem + "] [" + temp.kuvvet + "])-----> ");
             temp = temp.nextNode;
         }
 
@@ -147,7 +149,7 @@ public class LinkedList {
             bufferedWriter = new BufferedWriter(fileWriter);
             Node temp = header;
             while (temp != null) {
-                bufferedWriter.write("(" + temp.rakem + " x  ^" + temp.kuvvet + ") -----> ");
+                bufferedWriter.write(" ([" + temp.rakem + "] [" + temp.kuvvet + "]) -----> ");
                 temp = temp.nextNode;
             }
             bufferedWriter.flush();
@@ -160,56 +162,191 @@ public class LinkedList {
 
     public static void Toplam_islem(LinkedList linkedList) {
         int ToplamRekam = 0;
+        int T = 0;
         int Toplampower = 0;
-        BigInteger toplam = BigInteger.valueOf(0);
+        // BigInteger toplam = BigInteger.valueOf(0);
         Node temp = header;
         Node temp2 = linkedList.header;
+        boolean durum = false, durum2 = false;
+        StringBuilder sb = new StringBuilder();
+        // try{
+        String Str = "";
+        char arry[] = temp.kuvvet.toCharArray();
         while (temp != null) {
             temp2 = temp.nextNode;
             while (temp2 != null) {
+                if (temp.kuvvet.isEmpty() || temp.kuvvet.equals(" ")) {
+                    durum = true;
+                } else {
+                    durum = false;
+                }
+                if (temp2.kuvvet.isEmpty() || temp2.kuvvet.equals(" ")) {
+                    durum2 = true;
+                } else {
+                    durum2 = false;
+                }
                 if (temp.kuvvet.equals(temp2.kuvvet)) {
-                    ToplamRekam = Integer.parseInt(temp.rakem) + Integer.parseInt(temp2.rakem);
-                    Toplampower = Integer.parseInt(temp.kuvvet);
-                    toplam.add(BigInteger.valueOf((long) Math.pow(ToplamRekam * 2, Toplampower)));
-                    temp.kuvvet = null;
-                    temp.rakem = null;
-                    temp2.kuvvet = null;
-                    temp2.rakem = null;
+                    char t[] = temp.rakem.toCharArray();
+                    if (t[1] == ' ') {
+                        sb.append(t);
+                        sb.deleteCharAt(1);
+                        ToplamRekam = Integer.parseInt(String.copyValueOf(sb.toString().toCharArray())) + Integer.parseInt(temp2.rakem);
+                        Toplampower = Integer.parseInt(temp.kuvvet);
+                        toplam.add(BigInteger.valueOf((long) Math.pow(ToplamRekam * 2, Toplampower)));
+                        temp.kuvvet = null;
+                        temp.rakem = null;
+                        temp2.kuvvet = null;
+                        temp2.rakem = null;
+
+                    } else {
+
+                        String sayi = " ", sayi1 = " ";
+                        char h[] = temp.rakem.toCharArray();
+                        char y[] = temp2.rakem.toCharArray();
+                        StringBuilder builder = new StringBuilder();
+                        StringBuilder builder1 = new StringBuilder();
+                        builder.append(h);
+                        builder1.append(y);
+                        try {
+                            if (h[1] == ' ') {
+                                builder.deleteCharAt(1);
+                            }
+                            if (y[2] == ' ') {
+                                builder1.deleteCharAt(2);
+                            }
+                            // sayi = String.valueOf(builder.toString().toCharArray());
+                            sayi1 = String.valueOf(builder1.toString().toCharArray());
+                            ToplamRekam = Integer.valueOf(sayi);
+                        } catch (NumberFormatException ex) {
+                            builder.deleteCharAt(1);
+                            sayi = String.valueOf(builder.toString().toCharArray());
+                            ToplamRekam = Integer.valueOf(sayi);
+                            ToplamRekam += Integer.valueOf(sayi1);
+                            Toplampower = Integer.valueOf(temp.kuvvet);
+                        }
+                        toplam = toplam.add(BigInteger.valueOf((long) Math.pow(ToplamRekam * 2, Toplampower)));
+                    }
                     break;
-                } else if (temp.kuvvet.isEmpty() || temp.kuvvet.charAt(0) == ' ' && temp.kuvvet.charAt(1) == ' ' && temp.kuvvet.charAt(2) == ' '
-                        || temp2.kuvvet.isEmpty() || temp2.kuvvet.charAt(0) == ' ' && temp2.kuvvet.charAt(1) == ' ' && temp2.kuvvet.charAt(2) == ' ') {
-                    ToplamRekam = Integer.parseInt(temp.rakem) + Integer.parseInt(temp2.rakem);
-                    toplam.add(BigInteger.valueOf(ToplamRekam));
-                    temp.kuvvet = null;
-                    temp.rakem = null;
-                    temp2.kuvvet = null;
-                    temp2.rakem = null;
+                    // temp.kuvvet.charAt(0) == ' ' && temp.kuvvet.charAt(1) == ' ' 
+                } else if (durum) {
+                    ToplamRekam = Integer.parseInt(temp.rakem);
+                    T = +ToplamRekam;
+                    toplam = toplam.add(BigInteger.valueOf(ToplamRekam));
+                } else if (durum2) {
+                    T += Integer.parseInt(temp2.rakem);
+                    toplam = toplam.add(BigInteger.valueOf(T));
                 }
                 temp2 = temp2.nextNode;
             }
             temp = temp.nextNode;
         }
+      //}catch(NumberFormatException ex){
+
+        // }
     }
 
     public void Cikarma_islem(LinkedList linkedList) {
+        int ToplamRekam = 0;
+        int T = 0;
+        int Toplampower = 0;
+        // BigInteger toplam = BigInteger.valueOf(0);
+        Node temp = header;
+        Node temp2 = linkedList.header;
+        boolean durum = false, durum2 = false;
+        StringBuilder sb = new StringBuilder();
+        // try{
+        String Str = "";
+        char arry[] = temp.kuvvet.toCharArray();
+        while (temp != null) {
+            temp2 = temp.nextNode;
+            while (temp2 != null) {
+                if (temp.kuvvet.isEmpty() || temp.kuvvet.equals(" ")) {
+                    durum = true;
+                } else {
+                    durum = false;
+                }
+                if (temp2.kuvvet.isEmpty() || temp2.kuvvet.equals(" ")) {
+                    durum2 = true;
+                } else {
+                    durum2 = false;
+                }
+                if (temp.kuvvet.equals(temp2.kuvvet)) {
+                    char t[] = temp.rakem.toCharArray();
+                    if (t[1] == ' ') {
+                        sb.append(t);
+                        sb.deleteCharAt(1);
+                        ToplamRekam = Integer.parseInt(String.copyValueOf(sb.toString().toCharArray())) - Integer.parseInt(temp2.rakem);
+                        Toplampower = Integer.parseInt(temp.kuvvet);
+                        toplam.add(BigInteger.valueOf((long) Math.pow(ToplamRekam * 2, Toplampower)));
+                        temp.kuvvet = null;
+                        temp.rakem = null;
+                        temp2.kuvvet = null;
+                        temp2.rakem = null;
 
+                    } else {
+
+                        String sayi = " ", sayi1 = " ";
+                        char h[] = temp.rakem.toCharArray();
+                        char y[] = temp2.rakem.toCharArray();
+                        StringBuilder builder = new StringBuilder();
+                        StringBuilder builder1 = new StringBuilder();
+                        builder.append(h);
+                        builder1.append(y);
+                        try {
+                            if (h[1] == ' ') {
+                                builder.deleteCharAt(1);
+                            }
+                            if (y[2] == ' ') {
+                                builder1.deleteCharAt(2);
+                            }
+                            // sayi = String.valueOf(builder.toString().toCharArray());
+                            sayi1 = String.valueOf(builder1.toString().toCharArray());
+                            ToplamRekam = Integer.valueOf(sayi);
+                        } catch (NumberFormatException ex) {
+                            builder.deleteCharAt(1);
+                            sayi = String.valueOf(builder.toString().toCharArray());
+                            ToplamRekam = Integer.valueOf(sayi);
+                            ToplamRekam -= Integer.valueOf(sayi1);
+                            Toplampower = Integer.valueOf(temp.kuvvet);
+                        }
+                        cikarma = cikarma.add(BigInteger.valueOf((long) Math.pow(ToplamRekam * 2, Toplampower)));
+
+                    }
+                    break;
+                    // temp.kuvvet.charAt(0) == ' ' && temp.kuvvet.charAt(1) == ' ' 
+                } else if (durum) {
+                    ToplamRekam = Integer.parseInt(temp.rakem);
+                    T = -ToplamRekam;
+                    cikarma = cikarma.add(BigInteger.valueOf(ToplamRekam));
+                } else if (durum2) {
+                    T -= Integer.parseInt(temp2.rakem);
+                    cikarma = cikarma.add(BigInteger.valueOf(T));
+                }
+                temp2 = temp2.nextNode;
+            }
+            temp = temp.nextNode;
+        }
+      //}catch(NumberFormatException ex){
+
+        // }
     }
 
     public static void main(String[] args) throws IOException {
-        String denklem = "18x^75-12";
+        String denklem = "1x^2-10+8x^8";
         LinkedList Linklist_1 = new LinkedList();
-        Linklist_1.add(denklem);
-        Linklist_1.printList();
+        //Linklist_1.add(denklem);
+        //  Linklist_1.printList();
         Linklist_1.NameOfFile = "list1.txt";
         Linklist_1.Addtofile();
-        String Q = "17x^56+18x^44-11x^37-21x^19+94";
+        // String Q = "17x^56+18x^44-11x^37-21x^19+94";
         LinkedList linklist_2 = new LinkedList();
-        linklist_2.add(Q);
+        linklist_2.add(denklem);
         linklist_2.printList();
         linklist_2.NameOfFile = "list2.txt";
         linklist_2.Addtofile();
         LinkedList sonuc = new LinkedList();
-        //  sonuc.Toplam_islem(linklist_2);
+        sonuc.Toplam_islem(linklist_2);
+        System.out.println("sonuc : " + toplam);
 
     }
 }
