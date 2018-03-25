@@ -163,18 +163,24 @@ public class LinkedList {
     public static void Toplam_islem(LinkedList linkedList) {
         int ToplamRekam = 0;
         int T = 0;
+        int size = 0;
         int Toplampower = 0;
+        int yemp;
+        boolean eq = false;
         // BigInteger toplam = BigInteger.valueOf(0);
         Node temp = header;
         Node temp2 = linkedList.header;
         boolean durum = false, durum2 = false;
         StringBuilder sb = new StringBuilder();
+        StringBuilder sbp = new StringBuilder();
+        int intr = 0;
         // try{
         String Str = "";
         char arry[] = temp.kuvvet.toCharArray();
+        //"1x^2-10+8x^2";
         while (temp != null) {
             temp2 = temp.nextNode;
-            while (temp2 != null) {
+            while (temp2 != null ) {
                 if (temp.kuvvet.isEmpty() || temp.kuvvet.equals(" ")) {
                     durum = true;
                 } else {
@@ -185,7 +191,8 @@ public class LinkedList {
                 } else {
                     durum2 = false;
                 }
-                if (temp.kuvvet.equals(temp2.kuvvet)) {
+                eq = temp.kuvvet.charAt(0) == temp2.kuvvet.charAt(0);
+                if (eq || temp.kuvvet.equals(temp2.kuvvet)) {
                     char t[] = temp.rakem.toCharArray();
                     if (t[1] == ' ') {
                         sb.append(t);
@@ -208,6 +215,14 @@ public class LinkedList {
                         builder.append(h);
                         builder1.append(y);
                         try {
+                            Toplampower = Integer.valueOf(temp2.kuvvet);
+                        } catch (NumberFormatException ex) {
+                            sbp.append(temp2.kuvvet.toCharArray());
+                            sbp.deleteCharAt(1);
+                            Toplampower = Integer.valueOf(sbp.toString());
+                        }
+                        try {
+
                             if (h[1] == ' ') {
                                 builder.deleteCharAt(1);
                             }
@@ -217,23 +232,32 @@ public class LinkedList {
                             // sayi = String.valueOf(builder.toString().toCharArray());
                             sayi1 = String.valueOf(builder1.toString().toCharArray());
                             ToplamRekam = Integer.valueOf(sayi);
+
                         } catch (NumberFormatException ex) {
                             builder.deleteCharAt(1);
                             sayi = String.valueOf(builder.toString().toCharArray());
-                            ToplamRekam = Integer.valueOf(sayi);
-                            ToplamRekam += Integer.valueOf(sayi1);
-                            Toplampower = Integer.valueOf(temp.kuvvet);
+                            ToplamRekam = (Integer.valueOf(sayi)*2);
+                            ToplamRekam += (Integer.valueOf(sayi1)*2);
+
                         }
-                        toplam = toplam.add(BigInteger.valueOf((long) Math.pow(ToplamRekam * 2, Toplampower)));
+                        toplam = toplam.add(BigInteger.valueOf((int) Math.pow(ToplamRekam , Toplampower)));
                     }
                     break;
                     // temp.kuvvet.charAt(0) == ' ' && temp.kuvvet.charAt(1) == ' ' 
-                } else if (durum) {
+                }
+                if (durum) {
+
                     ToplamRekam = Integer.parseInt(temp.rakem);
+                    yemp = ToplamRekam;
                     T = +ToplamRekam;
-                    toplam = toplam.add(BigInteger.valueOf(ToplamRekam));
-                } else if (durum2) {
+                    if (size != yemp) {
+                        toplam = toplam.add(BigInteger.valueOf(ToplamRekam));
+                    }
+                }
+                if (durum2) {
+
                     T += Integer.parseInt(temp2.rakem);
+                    size = T;
                     toplam = toplam.add(BigInteger.valueOf(T));
                 }
                 temp2 = temp2.nextNode;
@@ -332,7 +356,7 @@ public class LinkedList {
     }
 
     public static void main(String[] args) throws IOException {
-        String denklem = "1x^2-10+8x^8";
+        String denklem = "10+18x^88";
         LinkedList Linklist_1 = new LinkedList();
         //Linklist_1.add(denklem);
         //  Linklist_1.printList();
