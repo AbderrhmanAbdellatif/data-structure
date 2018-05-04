@@ -157,7 +157,7 @@ public class LinkedlistTest extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         File dosya[];
-        String Aderss = "C:\\Users\\Aizen\\Documents\\NetBeansProjects\\deneme\\VeriYapilarOdev2";
+        String Aderss = "C:\\Users\\Aizen\\Documents\\NetBeansProjects\\DataStr_Homework_01_AhmetTekalan\\VeriYapilarOdev2";
         path.setText(Aderss);
         dosya = finder(path.getText());
         for (int i = dosya.length - 1; i >= 0; i--) {
