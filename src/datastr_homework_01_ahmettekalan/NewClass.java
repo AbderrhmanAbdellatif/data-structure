@@ -5,20 +5,17 @@
  */
 package datastr_homework_01_ahmettekalan;
 
+import java.math.BigInteger;
+
 /**
  *
- * @author AhmetTekalan
+ * @author Aizen
  */
-public class Node<t> {
+public class NewClass {
 
-    t rakem;
-    Node<t> nextNode;
-    t kuvvet;
-
-    public Node(t rakem, t kuvvet) {
-        this.rakem = rakem;
-        this.nextNode = null;
-        this.kuvvet = kuvvet;
+    public static void main(String[] args) {
+        String s = "8";
+        System.out.println(s);
     }
 
 }

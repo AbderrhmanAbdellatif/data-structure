@@ -24,7 +24,8 @@ public class LinkedList {
     public String NameOfFile;
     private FileWriter fileWriter = null;
     private BufferedWriter bufferedWriter = null;
-
+    
+/*
     public void add(String line) {
         // 17x^56+18x^44-11x^37-21x^19+94
         char kuvvet[] = new char[3];
@@ -142,7 +143,7 @@ public class LinkedList {
 
         System.out.print("null\n");
     }
-
+*/
     public void Addtofile() {
         try {
             fileWriter = new FileWriter(NameOfFile);
@@ -159,7 +160,7 @@ public class LinkedList {
             System.err.println("IOException: " + ioe.getMessage());
         }
     }
-
+/*
     public static void Toplam_islem(LinkedList linkedList) {
         int ToplamRekam = 0;
         int T = 0;
@@ -354,7 +355,7 @@ public class LinkedList {
 
         // }
     }
-
+*/
     public static void main(String[] args) throws IOException {
         String denklem = "10+18x^88";
         LinkedList Linklist_1 = new LinkedList();
