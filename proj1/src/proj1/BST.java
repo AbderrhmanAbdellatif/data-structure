@@ -5,6 +5,8 @@
  */
 package proj1;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author 14mst
@@ -14,7 +16,9 @@ public class BST<T extends Comparable<T>> {
 
     Node<T> root;
     MyQueue<Node> myqueue = new MyQueue<>();
+    ArrayList<String> BST_item = new ArrayList<>();
     int keyofindex;
+
     void insert(T newData) {
         Node<T> newNode = new Node<>(newData);
 
@@ -60,17 +64,17 @@ public class BST<T extends Comparable<T>> {
         }
 
     }
+
     public void display(Node n) {
-        
+
         if (n == null) {
             return;
         }
         display(n.leftChild);
-        System.out.print("  ["+n.data+"] --> ");
-        
+        BST_item.add((String) n.data);
         display(n.rightChild);
     }
-   
+
     public void preorder(Node<T> n) {
         if (n != null) {
             main.txtAreaTraverse.append(n.data.toString() + " -> ");
