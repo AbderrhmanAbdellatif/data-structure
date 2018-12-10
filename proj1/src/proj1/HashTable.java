@@ -15,10 +15,13 @@ import java.util.Objects;
 public class HashTable<T, G> {
 
     private HashEntry<T, G>[] table;
+    
     public ArrayList<BST> tree = new ArrayList();
+   
     public HashTable(int capacity) {
         table = new HashEntry[capacity];
     }
+    
     void put(T key, G value) {
         int hashResult = hashFunction(key);
         int index = hashResult % table.length;
@@ -45,7 +48,9 @@ public class HashTable<T, G> {
     private int hashFunction(T key) {
         // returns last digit of the given key(for integer)
         String value = String.valueOf(key);
+        
         int parseInt = Integer.parseInt("" + value.charAt(value.length() - 1));
+        
         return parseInt;
     }
 }
